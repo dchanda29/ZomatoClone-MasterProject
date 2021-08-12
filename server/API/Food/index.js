@@ -9,39 +9,18 @@ import { FoodModel } from "../../database/allModels";
 const Router = express.Router();
 
 /*
-Route    /
-Des     Get all restaurant details based on city
-Params    None
-Access    Public
-Method    GET
-*/
-Router.get("/", async(req, res) => {
-
-    try {
-        const { city } = req.query;
-        const restaurants = await RestaurantModel.find({ city });
-        return res.json({ restaurants });
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
-    }
-
-});
-
-/*
-Route    /
-Des     Get individual restaurant details based on id
+Route     /r
+Des       Get all food  based on particular restaurant
 Params    id
 Access    Public
 Method    GET
 */
-Router.get("/:_id", async(req, res) => {
+Router.get("/r/:_id", async(req, res) => {
 
     try {
         const { _id } = req.params;
-        const restaurant = await RestaurantModel.findOne(_id);
-        if (!restaurant)
-            return res.status(404).json({ error: "Restaurant Not Found!" });
-        return res.json({ restaurant });
+        const foods = await FoodModel.find({ reataurant: _id });
+        return res.json({ foods });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
@@ -49,27 +28,25 @@ Router.get("/:_id", async(req, res) => {
 });
 
 /*
-Route    /search
-Des      Get restaurant details based on search string
-Params    none
-Body      searchString
+Route     /r
+Des       Get all food  based on particular category
+Params    category
 Access    Public
 Method    GET
 */
-Router.get("/search", async(req, res) => {
+Router.get("/r/:category", async(req, res) => {
 
     try {
-        const { searchString } = req.body;
-        const restaurants = await RestaurantModel.find({
-            name: { $regex: searchString, $options: "i" }
+        const { _id } = req.params;
+        const foods = await FoodModel.find({
+            category: { $regex: category, $options: "i" }
         });
-        if (!restaurants)
-            return res.status(404).json({ error: `No Restaurants matched with ${searchString}` });
-        return res.json({ restaurant });
+        return res.json({ foods });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
 
 });
+
 
 export default Router;
