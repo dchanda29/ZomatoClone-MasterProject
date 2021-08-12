@@ -33,9 +33,11 @@ googleAuthConfig(passport);
 
 //Application Routes
 zomato.use("/auth", Auth);
-
+zomato.use("/restaurant", Restaurant);
 
 zomato.get("/", (req, res) => res.json({ message: "Setup Success" }));
+
+console.log(process.env.GOOGLE_CLIENT_ID);
 
 zomato.listen(4000, () => ConnectDB()
     .then(() => console.log("Server is running."))
