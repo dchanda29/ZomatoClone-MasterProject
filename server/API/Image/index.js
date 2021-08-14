@@ -3,10 +3,10 @@ import express from "express";
 import passport from "passport";
 import multer from "multer";
 
-//Database Models
+// //Database Models
 import { ImageModel } from "../../database/allModels";
 
-//Utilities
+// //Utilities
 import { s3Upload } from "../../Utils/AWS/s3";
 
 
@@ -25,22 +25,22 @@ Params    none
 Access    Public
 Method    POST
 */
-Router.post("/", upload.array("file", 4), async(req, res) => {
+Router.post("/", upload.single("file"), async(req, res) => {
 
     try {
-        const file = req.files;
+        const file = req.file;
 
-        // //s3 bucket options
-        // const bucketOptions = {
-        //     Bucket: "dczomatoclone",
-        //     Key: file.originalname,
-        //     Body: file.buffer,
-        //     ContentType: file.mimetype,
-        //     ACL: "public-read", //Access Control List
-        // };
+        // s3 bucket options
+        const bucketOptions = {
+            Bucket: "dczomatoclone",
+            Key: file.originalname,
+            Body: file.buffer,
+            ContentType: file.mimetype,
+            ACL: "public-read", //Access Control List
+        };
 
+        const uploadImage = await s3Upload(bucketOptions);
 
-        // const uploadImage = await s3Upload(bucketOptions);
         return res.status(200).json({ file });
 
     } catch (error) {

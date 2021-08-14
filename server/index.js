@@ -3,7 +3,6 @@ require("dotenv").config();
 
 //Libraries
 import express from "express";
-
 import cors from "cors";
 import helmet from "helmet"; //adds security
 import passport from "passport";
@@ -12,10 +11,10 @@ import passport from "passport";
 import googleAuthConfig from "./config/google.config";
 
 //microservice routes
-import Auth from "./API/Auth/index";
-import Restaurant from "./API/Restaurant/index";
-import Food from "./API/Food/index";
-import Image from "./API/Image/index";
+import Auth from "./API/Auth";
+import Restaurant from "./API/Restaurant";
+import Food from "./API/Food";
+import Image from "./API/Image";
 
 //databse connection
 import ConnectDB from "./database/connection";
