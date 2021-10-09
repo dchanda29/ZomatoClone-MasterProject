@@ -98,7 +98,7 @@ const LargeNav = ({ SignIn, SignUp }) => {
               </span>
               <input
                 type="text"
-                placeholder="Bengaluru"
+                placeholder="Lucknow"
                 className=" focus:outline-none"
               />
               <IoMdArrowDropdown />
