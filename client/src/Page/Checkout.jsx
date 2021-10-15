@@ -21,7 +21,7 @@ const Checkout = () => {
       address: "India",
     },
     {
-      name: "Gym",
+      name: "Bae",
       address: "India",
     },
     {
@@ -32,7 +32,7 @@ const Checkout = () => {
 
   const payNow = () => {
     let options = {
-      key: "rzp_test_RNvW44vJHiXg1b",
+      key: "rzp_test_hGjQCsjWC9iIm4",
       amount:
         reduxStateCart.reduce((acc, curVal) => acc + curVal.totalPrice, 0) *
         100,
@@ -65,7 +65,7 @@ const Checkout = () => {
           <h5 className="text-base tracking-wider">ORDER FROM</h5>
           <div className="flex w-full  flex-col items-center text-gray-400">
             <h4>Domino's Pizza</h4>
-            <small>GT World Mall, Magadi Road, Bangalore</small>
+            <small>Shalimar Plaza,Sec-5, Bhootnath ,faizabad Rd.</small>
           </div>
           <div className="my-4 h-32 overflow-y-scroll px-4 flex flex-col gap-2 w-full md:w-3/5 ">
             {reduxStateCart.map((food) => (
